@@ -1,4 +1,4 @@
-package com.enpit.t311.ekiriha;
+package com.enpit.t331.ekiriha;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent it = new Intent();
-        it.setClass(this, EkiActivity.class);
+        it.setClass(this, StationActivity.class);
         this.startActivity(it);
     }
 }

@@ -1,5 +1,6 @@
-package com.enpit.t311.ekiriha;
+package com.enpit.t331.ekiriha;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.SpinnerAdapter;
 
 public class RoutingActivity extends AppCompatActivity {
 
+    private Context mContext = this;
     private int station_pos;
     private int route_start = -1;
     private int route_end = -2;
@@ -20,7 +22,6 @@ public class RoutingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routing);
         Intent it = getIntent();
-
         //station position
         station_pos = it.getIntExtra("station_pos", -1);
         //station name
@@ -69,19 +70,16 @@ public class RoutingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(route_end == route_start){
                     Function.Toast(getApplicationContext(), R.string.warning_start_end_same);
+                }else {
+                    Intent it = new Intent();
+                    it.setClass(getApplicationContext(), MapsActivity.class);
+                    it.putExtra("station", station_pos);
+                    it.putExtra("start", route_start);
+                    it.putExtra("end", route_end);
+                    mContext.startActivity(it);
                 }
-                Intent it = new Intent();
-//todo
-//              it.setClass(getApplicationContext(), MapActivity.class);
-                it.putExtra("station", station_pos);
-                it.putExtra("start", route_start);
-                it.putExtra("end", route_end);
-                getApplicationContext().startActivity(it);
             }
         });
-        if(mItems!= null){
-            Function.Toast(getApplicationContext(), "error");
-        }
 
 
     }

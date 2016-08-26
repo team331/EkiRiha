@@ -12,6 +12,17 @@
         <item>akihabara</item>
     </string-array>
 
+    <string-array name="station_titude">
+        <item>36.082812, 140.111431</item>
+    </string-array>
+
+    <string-array name="tsukuba_points">
+        <item>36.082812, 140.111431</item>
+        <item>36.082857, 140.111553</item>
+        <item>36.082664, 140.111762</item>
+        <item>36.082798, 140.112138</item>
+        <item>36.082731, 140.112141</item>
+    </string-array>
     <string-array name="tsukuba">
         <item>改札口</item>
         <item>バスステーション01</item>
@@ -22,11 +33,8 @@
         <item>バスステーション06</item>
         <item>バスステーション07</item>
         <item>バスステーション08</item>
-        <item>バスステーション09</item>
-        <item>バスステーション10</item>
-        <item>バスステーション11</item>
-        <item>バスステーション12</item>
     </string-array>
+
 
     <string-array name="shinjuku">
 

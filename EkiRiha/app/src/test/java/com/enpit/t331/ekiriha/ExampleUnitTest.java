@@ -1,4 +1,4 @@
-package com.enpit.t311.ekiriha;
+package com.enpit.t331.ekiriha;
 
 import org.junit.Test;
 
