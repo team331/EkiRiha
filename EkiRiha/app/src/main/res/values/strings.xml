@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EkiRiha</string>
+
+
+    <string name="select_station">駅を選択してください</string>
+
+    <string name="next">次へ</string>
+    <string name="search">検索</string>
+
+    <string name="unsupport">選んだ場所は現在使えません</string>
+    <string name="warning_start_end_same">起点と最後は同じ場所にはいけない</string>
+    <string name="tsukuba">つくば</string>
+    <string name="shinjuku">新宿</string>
+    <string name="akihabara">秋葉原</string>
+</resources>

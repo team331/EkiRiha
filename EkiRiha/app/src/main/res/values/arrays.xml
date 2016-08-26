@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="station">
+        <item>@string/tsukuba</item>
+        <item>@string/shinjuku</item>
+        <item>@string/akihabara</item>
+    </string-array>
+
+    <string-array name="station_mark">
+        <item>tsukuba</item>
+        <item>shinjuku</item>
+        <item>akihabara</item>
+    </string-array>
+
+    <string-array name="tsukuba">
+        <item>改札口</item>
+        <item>バスステーション01</item>
+        <item>バスステーション02</item>
+        <item>バスステーション03</item>
+        <item>バスステーション04</item>
+        <item>バスステーション05</item>
+        <item>バスステーション06</item>
+        <item>バスステーション07</item>
+        <item>バスステーション08</item>
+        <item>バスステーション09</item>
+        <item>バスステーション10</item>
+        <item>バスステーション11</item>
+        <item>バスステーション12</item>
+    </string-array>
+
+    <string-array name="shinjuku">
+
+    </string-array>
+</resources>
