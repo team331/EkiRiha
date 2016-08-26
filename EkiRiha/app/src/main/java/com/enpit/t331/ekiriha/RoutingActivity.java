@@ -25,7 +25,7 @@ public class RoutingActivity extends AppCompatActivity {
         //station position
         station_pos = it.getIntExtra("station_pos", -1);
         //station name
-        String station = getResources().getStringArray(R.array.station_mark)[station_pos];
+        String station = getResources().getStringArray(R.array.station_mark)[station_pos] + "_select";
         int identify = this.getResources().getIdentifier(station, "array", this.getPackageName());
         //routing names of this station
         String[] mItems = getResources().getStringArray(identify);
