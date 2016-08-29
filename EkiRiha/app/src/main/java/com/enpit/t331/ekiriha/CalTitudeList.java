@@ -124,4 +124,15 @@ public class CalTitudeList {
 
         return titudes_list;
     }
+
+    public ArrayList<String> getMovieList(){
+        //must be used after convertRoute
+        ArrayList<String> list = new ArrayList<>();
+        for(int i=0;i<route.size()-1;i++){
+            String tmp = station + "_m_" + route.get(i) + "_" + route.get(i+1) + ".mp4";
+            list.add(tmp);
+        }
+        return list;
+    }
+
 }

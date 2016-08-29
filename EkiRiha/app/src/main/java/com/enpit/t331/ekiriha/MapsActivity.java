@@ -39,6 +39,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         start = it.getIntExtra("start", -1);
         end = it.getIntExtra("end", -1);
 
+        ctl = new CalTitudeList(context, station_num, start , end);
+        ctl.SearchRoute();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -60,6 +63,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 Function.Toast(getApplicationContext(), "show movie");
+                ArrayList<String> list = ctl.getMovieList();
+                Intent it = new Intent();
+//                it.setClass(getApplicationContext(), MovieActivity.class);
+                it.putStringArrayListExtra("movie_list",list);
+                context.startActivity(it);
             }
         });
     }
@@ -79,8 +87,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        ctl = new CalTitudeList(context, station_num, start , end);
-        ctl.SearchRoute();
+
         LatLng start = AddMarker();
         AddRouteLine();
 //        mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
