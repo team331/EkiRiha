@@ -11,19 +11,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StationActivity" />
-        <activity android:name=".RoutingActivity" />
+        <activity android:name=".StationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RoutingActivity"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,6 +42,10 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
+        <activity android:name=".MovieActivity"
+            android:screenOrientation="landscape">
+
+        </activity>
     </application>
 
 </manifest>

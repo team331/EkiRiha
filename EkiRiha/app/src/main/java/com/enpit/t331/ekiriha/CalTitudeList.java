@@ -129,7 +129,7 @@ public class CalTitudeList {
         //must be used after convertRoute
         ArrayList<String> list = new ArrayList<>();
         for(int i=0;i<route.size()-1;i++){
-            String tmp = station + "_m_" + route.get(i) + "_" + route.get(i+1) + ".mp4";
+            String tmp = station + "_m_" + route.get(i) + "_" + route.get(i+1);
             list.add(tmp);
         }
         return list;

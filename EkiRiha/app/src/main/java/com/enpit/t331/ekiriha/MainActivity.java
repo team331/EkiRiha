@@ -11,6 +11,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
         Intent it = new Intent();
         it.setClass(this, StationActivity.class);
         this.startActivity(it);

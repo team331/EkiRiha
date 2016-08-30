@@ -14,8 +14,6 @@
 
     <string-array name="station_titude">
         <item>36.082812, 140.111431</item>
-        <item>number of, shinjuku</item>
-        <item>number of, akihabara</item>
     </string-array>
 
     <string-array name="tsukuba_points">
@@ -50,22 +48,22 @@
     </string-array>
     <string-array name="tsukuba_select">
         <item>改札口</item>
-        <item>バスステーション01</item>
-        <item>バスステーション02</item>
-        <item>バスステーション03</item>
         <item>タクシー乗り場</item>
-        <item>バスステーション04</item>
-        <item>バスステーション05</item>
-        <item>バスステーション06</item>
-        <item>バスステーション07</item>
-        <item>バスステーション08</item>
+        <item>01番バス乗り場</item>
+        <item>02番バス乗り場</item>
+        <item>03番バス乗り場</item>
+        <item>04番バス乗り場</item>
+        <item>05番バス乗り場</item>
+        <item>06番バス乗り場</item>
+        <item>07番バス乗り場</item>
+        <item>08番バス乗り場</item>
     </string-array>
     <string-array name="tsukuba_select_map">
         <item>0</item>
+        <item>7</item>
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>7</item>
         <item>8</item>
         <item>9</item>
         <item>10</item>

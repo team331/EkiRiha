@@ -62,10 +62,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         button_movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Function.Toast(getApplicationContext(), "show movie");
                 ArrayList<String> list = ctl.getMovieList();
                 Intent it = new Intent();
-//                it.setClass(getApplicationContext(), MovieActivity.class);
+                it.setClass(getApplicationContext(), MovieActivity.class);
                 it.putStringArrayListExtra("movie_list",list);
                 context.startActivity(it);
             }
