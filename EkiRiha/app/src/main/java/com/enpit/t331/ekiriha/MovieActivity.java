@@ -30,7 +30,6 @@ public class MovieActivity extends AppCompatActivity {
 
         //ID取得
         final VideoView v = (VideoView) findViewById(R.id.v);
-        Function.Toast(context, movies.get(i));
         System.out.println(movies.get(i));
         //動画指定
         v.setVideoURI(Uri.parse("android.resource://" + this.getPackageName() + "/" + movies.get(i)));
