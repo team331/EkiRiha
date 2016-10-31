@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:hint="町の名前や郵便番号を入力してください"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPSを使って自動検査します"
+        android:id="@+id/checkBox2"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@id/editText" />
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:id="@+id/button"
+        android:hint="町の名前や郵便番号を入力してください"
+        android:layout_below="@+id/spinner"
+        android:layout_alignStart="@+id/checkBox2" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/checkBox2"
+        android:layout_alignStart="@+id/button" />
+
+
+</RelativeLayout>

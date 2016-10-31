@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        t311 {
+            keyAlias 't331.keystore'
+            keyPassword 'ekiriha'
+            storeFile file('/Users/woo/tsukuba/enpit/EkiRiha/t331.keystore')
+            storePassword 'ekiriha'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.enpit.t331.ekirihatsukuba"
         minSdkVersion 21
@@ -20,7 +27,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
