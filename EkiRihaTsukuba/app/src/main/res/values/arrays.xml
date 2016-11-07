@@ -17,14 +17,14 @@
         <item>med</item>
         <item>sp_art</item>
     </string-array>
-
+    
     <string-array name="third_select_map">
         <item>6</item>
         <item>4</item>
         <item>8</item>
         <item>7</item>
     </string-array>
-
+    
     <string-array name="third_select_tag">
         <item>3A</item>
         <item>3B</item>
@@ -54,4 +54,62 @@
         <item>36.111162, 140.099473</item>
         <item>36.111466, 140.100225</item>
     </string-array>
+
+    <string-array name="first_select_map">
+      <item>10</item>
+      <item>11</item>
+      <item>12</item>
+      <item>14</item>
+      <item>17</item>
+    </string-array>
+
+    <string-array name="first_select_tag">
+      <item>1B</item>
+      <item>1C</item>
+      <item>1D</item>
+      <item>1E</item>
+      <item>1H</item>
+    </string-array>
+
+    <string-array name="first_links">
+      <item>0,1</item>
+      <item>1,2</item>
+      <item>2,3</item>
+      <item>3,4</item>
+      <item>4,5</item>
+      <item>5,6</item>
+      <item>6,7</item>
+      <item>7,8</item>
+      <item>8,9</item>
+      <item>9,10</item>
+      <item>9,11</item>
+      <item>9,12</item>
+      <item>9,13</item>
+      <item>13,14</item>
+      <item>9,15</item>
+      <item>15,16</item>
+      <item>16,17</item>
+    </string-array>
+    
+    <string-array name="first_points">
+      <item>36.107902, 140.099815</item>
+      <item>36.108142, 140.099735</item>
+      <item>36.108410, 140.100430</item>
+      <item>36.108317, 140.101132</item>
+      <item>36.108693, 140.101975</item>
+      <item>36.108642, 140.101997</item>
+      <item>36.108619, 140.101948</item>
+      <item>36.108640, 140.101939</item>
+      <item>36.108672, 140.102024</item>
+      <item>36.108376, 140.102191</item>
+      <item>36.108694, 140.102747</item>
+      <item>36.108486, 140.102318</item>
+      <item>36.108367, 140.102045</item>
+      <item>36.108227, 140.101763</item>
+      <item>36.108252, 140.101710</item>
+      <item>36.108425, 140.102256</item>
+      <item>36.108266, 140.102375</item>
+      <item>36.108526, 140.102995</item>
+    </string-array>
+    
 </resources>
