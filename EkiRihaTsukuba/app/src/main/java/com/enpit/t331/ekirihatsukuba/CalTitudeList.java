@@ -122,7 +122,7 @@ public class CalTitudeList {
         if(flag) po.add(points.get(now).latlng);
         if(!visited.contains(now))
             visited.add(now);
-        short_line.add(now);
+        if(!flag) short_line.add(now);
         ArrayList<Integer> unVisitedNeighbor = points.get(now).getUnVisitedNeighbor(visited);
         if(unVisitedNeighbor.size() > 0){
             if(unVisitedNeighbor.size() > 1){
@@ -137,8 +137,10 @@ public class CalTitudeList {
                     po.width(5).color(Color.RED);
                 }
                 now = poor.remove(0);
-                int index = short_line.indexOf(now);
-                short_line.subList(index, short_line.size()).clear();
+                if(!flag) {
+                    int index = short_line.indexOf(now);
+                    short_line.subList(index, short_line.size()).clear();
+                }
             }
         }
         return plos;

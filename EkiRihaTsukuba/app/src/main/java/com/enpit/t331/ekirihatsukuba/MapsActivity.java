@@ -119,7 +119,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     public int getspotId(){
-        return 2;
+        return 1;
     }
     private void needShowIntroduce(){
         if(dataManager.getBoolean("show_intro", true)){
@@ -264,8 +264,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         textViewList.get(0).setText(textViewList.get(0).getText()+"->");
         for(int i=1;i<=5;i++){
             if(i>llp.getFloorNumber()){
-                textViewList.get(i).setVisibility(View.INVISIBLE);
-                textViewList.get(i).setClickable(false);
+                textViewList.get(i-1).setVisibility(View.INVISIBLE);
+                textViewList.get(i-1).setClickable(false);
             }else{
                 final int num = i-1;
                 textViewList.get(i-1).setOnClickListener(new View.OnClickListener() {
