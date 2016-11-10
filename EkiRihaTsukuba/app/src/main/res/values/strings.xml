@@ -11,4 +11,5 @@
     <string name="introduce">このアプリはXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nDialogを使う方が良いかも</string>
     <string name="dont_show_again">Dont show again</string>
     <string name="next">次へ</string>
+    <string name="movie_from_bus">駅からの動画-></string>
 </resources>

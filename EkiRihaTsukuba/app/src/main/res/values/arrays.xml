@@ -32,6 +32,13 @@
         <item>3L</item>
     </string-array>
 
+    <string-array name="third_select_floor">
+        <item>5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
     <string-array name="third_links">
         <item>0,1</item>
         <item>1,2</item>
@@ -39,7 +46,7 @@
         <item>3,4</item>
         <item>4,5</item>
         <item>5,6</item>
-        <item>2,7</item>
+        <item>3,7</item>
         <item>7,8</item>
     </string-array>
 
