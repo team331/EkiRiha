@@ -61,7 +61,7 @@
         <item>36.111162, 140.099473</item>
         <item>36.111466, 140.100225</item>
     </string-array>
-
+    
     <string-array name="first_select_map">
       <item>10</item>
       <item>11</item>
@@ -119,4 +119,53 @@
       <item>36.108526, 140.102995</item>
     </string-array>
     
+    <string-array name="second_select_map">
+        <item>7</item>
+        <item>7</item>
+        <item>8</item>
+        <item>8</item>
+        <item>12</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="second_select_tag">
+        <item>2A</item>
+        <item>2B</item>
+        <item>2C</item>
+        <item>2D</item>
+        <item>2G</item>
+        <item>2H</item>
+    </string-array>
+
+    <string-array name="second_links">
+        <item>0,1</item>
+        <item>1,2</item>
+        <item>2,3</item>
+        <item>2,4</item>
+        <item>2,5</item>
+        <item>5,6</item>
+        <item>6,7</item>
+        <item>3,8</item>
+        <item>6,9</item>
+        <item>8,9</item>	<!-- 地点9には地点6からも地点8からも行ける -->
+        <item>9,10</item>
+        <item>10,11</item>
+        <item>11,12</item>
+    </string-array>
+
+    <string-array name="second_points">
+        <item>36.111291, 140.103518</item>	<!-- 0:中央バス停 -->
+		<item>36.111628, 140.103293</item>	<!-- 1:車道交差点 -->
+		<item>36.111307, 140.102467</item>	<!-- 2:学内交差点 -->
+		<item>36.111675, 140.102244</item>	<!-- 3:掲示板 -->
+		<item>36.111127, 140.101780</item>	<!-- 4:2H入口 -->
+		<item>36.110604, 140.101461</item>	<!-- 5:総合研究棟A前 -->
+		<item>36.110552, 140.101458</item>	<!-- 6:2A,2B前交差点 -->
+		<item>36.110604, 140.101461</item>	<!-- 7:2A,2B入口 -->
+		<item>36.111382, 140.101214</item>	<!-- 8:2C,2D入口 -->
+		<item>36.111217, 140.100871</item>	<!-- 9:2Cと水路の間(建物側) -->
+		<item>36.111193, 140.100736</item>	<!-- 10:2Cと水路の間(水路側) -->
+		<item>36.111980, 140.100241</item>	<!-- 11:2G前道 -->
+		<item>36.112017, 140.100321</item>	<!-- 12:2G入口 -->
+    </string-array>
 </resources>
