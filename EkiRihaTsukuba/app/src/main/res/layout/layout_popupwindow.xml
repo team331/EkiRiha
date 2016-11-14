@@ -99,6 +99,18 @@
             android:layout_alignStart="@+id/text_4F"
             android:textColor="@drawable/textview_selector"
             android:textStyle="italic" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="6F"
+            android:autoLink="all"
+            android:id="@+id/text_6F"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/text_5F"
+            android:layout_alignStart="@+id/text_5F"
+            android:textColor="@drawable/textview_selector"
+            android:textStyle="italic" />
 
         <ImageView
             android:layout_width="400dp"

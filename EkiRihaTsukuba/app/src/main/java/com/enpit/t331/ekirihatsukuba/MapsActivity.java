@@ -119,7 +119,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     public int getspotId(){
-        return 1;
+        return 5;
     }
     private void needShowIntroduce(){
         if(dataManager.getBoolean("show_intro", true)){
@@ -254,15 +254,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         final ImageView image = (ImageView) popupView.findViewById(R.id.floor_photo);
-        Picasso.with(mActivity).load(jpgAddrPrefix+llp.getFloorJPGName().get(0)).into(image);
+        if(!llp.tag.equals("Gym"))
+            Picasso.with(mActivity).load(jpgAddrPrefix+llp.getFloorJPGName().get(0)).into(image);
 
         final ArrayList<TextView> textViewList = new ArrayList<>();
-        for(int i=1; i<=5;i++) {
+        for(int i=1; i<=6;i++) {
             int text_id = mActivity.getResources().getIdentifier("text_" + i + "F", "id", mActivity.getPackageName());
             textViewList.add((TextView) popupView.findViewById(text_id));
         }
         textViewList.get(0).setText(textViewList.get(0).getText()+"->");
-        for(int i=1;i<=5;i++){
+        for(int i=1;i<=6;i++){
             if(i>llp.getFloorNumber()){
                 textViewList.get(i-1).setVisibility(View.INVISIBLE);
                 textViewList.get(i-1).setClickable(false);
@@ -271,7 +272,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 textViewList.get(i-1).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Picasso.with(mActivity).load(jpgAddrPrefix+llp.getFloorJPGName().get(num)).into(image);
+                        if(llp.tag != "Gym")
+                            Picasso.with(mActivity).load(jpgAddrPrefix+llp.getFloorJPGName().get(num)).into(image);
                         for(TextView tv: textViewList){
                             tv.setText(tv.getText().subSequence(0,2));
                         }
