@@ -9,6 +9,71 @@
         <item>体育、芸術試験場</item>
     </string-array>
 
+    <string-array name="school_group">
+        <item>人文・文化学群</item>
+        <item>社会・国際学群</item>
+        <item>人間学群</item>
+        <item>生命環境学群</item>
+        <item>理工学群</item>
+        <item>情報学群</item>
+        <item>医学群</item>
+        <item>体育専門学群</item>
+        <item>芸術専門学群</item>
+    </string-array>
+
+    <string-array name="scholarship_0">
+        <item>人文学類</item>
+        <item>比較文化学類</item>
+        <item>日本語・日本文化学類</item>
+    </string-array>
+
+    <string-array name="scholarship_1">
+        <item>社会学類</item>
+        <item>国際総合学類</item>
+    </string-array>
+
+    <string-array name="scholarship_2">
+        <item>教育学類</item>
+        <item>心理学類</item>
+        <item>障害科学類</item>
+    </string-array>
+
+    <string-array name="scholarship_3">
+        <item>生物学類</item>
+        <item>生物資源学類</item>
+        <item>地球学類</item>
+    </string-array>
+
+    <string-array name="scholarship_4">
+        <item>数学類</item>
+        <item>物理学類</item>
+        <item>科学類</item>
+        <item>応用理工学類</item>
+        <item>高額システム学類</item>
+        <item>社会工学類</item>
+    </string-array>
+
+    <string-array name="scholarship_5">
+        <item>情報科学類</item>
+        <item>情報メディア創成学類</item>
+        <item>知識情報・図書館学類</item>
+    </string-array>
+
+    <string-array name="scholarship_6">
+        <item>医学類</item>
+        <item>看護学類</item>
+        <item>医療科学類</item>
+    </string-array>
+
+    <string-array name="scholarship_7">
+        <item>学類なし</item>
+    </string-array>
+
+    <string-array name="scholarship_8">
+        <item>学類なし</item>
+    </string-array>
+
+
     <string-array name="spot_code">
         <item>first</item>
         <item>second</item>
