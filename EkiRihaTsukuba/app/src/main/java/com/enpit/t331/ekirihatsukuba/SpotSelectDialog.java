@@ -114,19 +114,19 @@ public class SpotSelectDialog extends DialogFragment {
 
     private void checkSpots(){
         switch(mSchoolGroup){
-            case 0://人文・文化学軍
+            case 0://人文・文化学群
                 if(mScholarship == 0){mSpotId = 0;}else{mSpotId = 1;}
                 break;
             case 1://社会・国際学群
                 if(mScholarship == 0){mSpotId = 0;}else{mSpotId = 2;}
                 break;
-            case 2://人間学軍
+            case 2://人間学群
                 mSpotId = 1;
                 break;
             case 3://生命環境学群
                 if(mScholarship == 2){mSpotId = 0;}else{mSpotId = 1;}
                 break;
-            case 4://理工学軍
+            case 4://理工学群
                 if(mScholarship == 0 || mScholarship == 1 || mScholarship == 2){
                     mSpotId = 0;
                 }else{
@@ -136,7 +136,7 @@ public class SpotSelectDialog extends DialogFragment {
             case 5://情報学群
                 if(mScholarship == 0){mSpotId = 2;}else{mSpotId = 3;}
                 break;
-            case 6://医学軍
+            case 6://医学群
                 mSpotId = 4;
                 break;
             case 7://体育専門学群
