@@ -32,7 +32,7 @@ public class SpotSelectDialog extends DialogFragment {
         final View layout = inflater.inflate(R.layout.spot_select_dialog,(ViewGroup)getActivity().findViewById(R.id.spot_select_dialog_layout));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("学群と学部を選択してください");
+        builder.setTitle("学群と学類を選択してください");
         builder.setView(layout);
         builder.setPositiveButton("OK",null);
 
