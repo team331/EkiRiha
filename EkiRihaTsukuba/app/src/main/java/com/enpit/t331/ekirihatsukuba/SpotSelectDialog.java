@@ -147,7 +147,7 @@ public class SpotSelectDialog extends DialogFragment {
     }
 
     //学群学類に対応する試験会場を返す(第一試験会場=0....)
-    public int getSelectedSpotId(){
+    public int getSpotId(){
         return mSpotId;
     }
 }
