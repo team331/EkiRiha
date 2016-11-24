@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.PopupWindow;
 
 /**
@@ -31,7 +32,7 @@ public class CustomPopWindow extends PopupWindow{
 //        this.setAnimationStyle(R.style.select_);
         ColorDrawable dw = new ColorDrawable(0x00000000);
         this.setBackgroundDrawable(dw);
-        this.setOutsideTouchable(true);
+        this.setOutsideTouchable(false);
         this.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -62,8 +63,21 @@ public class CustomPopWindow extends PopupWindow{
         Button button = (Button) mView.findViewById(R.id.button);
         button.setOnClickListener(itemOnClick);
 
+        CheckBox checkBox = (CheckBox) mView.findViewById(R.id.checkBox);
+
+
 
     }
+
+    public void checkBoxOperate(DataManager dm, String name){
+        CheckBox checkBox = (CheckBox) mView.findViewById(R.id.checkBox);
+        if(checkBox != null){
+            if(checkBox.isChecked()){
+                dm.setBoolean(name, false);
+            }
+        }
+    }//show_introduce, show_setting
+
 
     private void initSetting(final Activity context, View.OnClickListener itemOnClick){
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
