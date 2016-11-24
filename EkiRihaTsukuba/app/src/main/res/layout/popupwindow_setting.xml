@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GPSを使って自動検査します"
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBox"
         android:layout_below="@+id/editText"
         android:layout_marginTop="20dp"
         android:layout_alignLeft="@id/editText" />
@@ -33,14 +33,14 @@
         android:id="@+id/button"
         android:hint="町の名前や郵便番号を入力してください"
         android:layout_below="@+id/spinner"
-        android:layout_alignStart="@+id/checkBox2" />
+        android:layout_alignStart="@+id/checkBox" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:spinnerMode="dropdown"
-        android:layout_below="@+id/checkBox2"
+        android:layout_below="@+id/checkBox"
         android:layout_alignStart="@+id/button" />
 
 
