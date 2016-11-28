@@ -3,6 +3,7 @@ package com.enpit.t331.ekirihatsukuba;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,9 @@ public class SpotSelectDialog extends DialogFragment {
     private String scholarship_str = "";
     private static Spinner mSchoolGroupSpinner;
     private static Spinner mScholarshipSpinner;
+    private AlertDialog.Builder builder;
     private static String[] mArray;
+    private DialogInterface.OnClickListener mListener;
     private int mSpotId = 0;//試験会場
     private int mSchoolGroup = 0;//選択された学群
     private int mScholarship = 0;//選択された学類
@@ -31,10 +34,10 @@ public class SpotSelectDialog extends DialogFragment {
         LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.spot_select_dialog,(ViewGroup)getActivity().findViewById(R.id.spot_select_dialog_layout));
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("学群と学類を選択してください");
         builder.setView(layout);
-        builder.setPositiveButton("OK",null);
+        builder.setPositiveButton("OK", mListener);
 
         AdapterView.OnItemSelectedListener mSchoolGroupListener = new AdapterView.OnItemSelectedListener() {
             @Override
@@ -149,5 +152,9 @@ public class SpotSelectDialog extends DialogFragment {
     //学群学類に対応する試験会場を返す(第一試験会場=0....)
     public int getSpotId(){
         return mSpotId;
+    }
+
+    public void setPositiveButton(DialogInterface.OnClickListener listener){
+        this.mListener = listener;
     }
 }

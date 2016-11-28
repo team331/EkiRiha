@@ -1,6 +1,7 @@
 package com.enpit.t331.ekirihatsukuba;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,6 +60,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private CustomPopWindow mCustomWindow;
     private PopupWindow mPopupWindowBus;
     private PopupWindow mPopupWindow;
+    private SpotSelectDialog mSpotSelectDialog;
     private FloatingActionButton fab;
     private boolean firstEnter = true;
     private boolean mapReady = false;
@@ -116,20 +118,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onStart(){
         super.onStart();
-
+        mSpotSelectDialog = new SpotSelectDialog();
+        mSpotSelectDialog.setCancelable(false);
+        //todo
+        mSpotSelectDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ctl = new CalTitudeList(mActivity, mSpotSelectDialog.getSpotId());
+                startLatLng = AddMarkers();
+                AddRouteLines();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLatLng, 18));
+            }
+        });
+        mSpotSelectDialog.show(getFragmentManager(),"dialog");
     }
 
     @Override
     protected void onPause(){
         super.onPause();
-        mCustomWindow.saveMemoData();
+//        mCustomWindow.saveMemoData();
     }
 
     public int getspotId(){
         return 2;
     }
     private void needShowIntroduce(){
-        if(dataManager.getBoolean("show_intro", true)){
+        if(dataManager.getBoolean("show_intro", false)){
             mCustomWindow = new CustomPopWindow(mActivity, new View.OnClickListener() {
                 public void onClick(View v) {
                     mCustomWindow.dismiss();
@@ -145,7 +159,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void needShowSetting() {
-        if(dataManager.getBoolean("show_setting", true)){
+        if(dataManager.getBoolean("show_setting", false)){
             mCustomWindow = new CustomPopWindow(mActivity, new View.OnClickListener() {
                 public void onClick(View v) {
                     mCustomWindow.dismiss();
