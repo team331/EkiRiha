@@ -21,4 +21,13 @@ public class DataManager {
         editor.putBoolean(name, value);
         editor.commit();
     }
+
+    public String getString(String name){
+        return sharedPreferences.getString(name, "");
+    }
+
+    public void setString(String name, String str){
+        editor.putString(name, str);
+        editor.commit();
+    }
 }

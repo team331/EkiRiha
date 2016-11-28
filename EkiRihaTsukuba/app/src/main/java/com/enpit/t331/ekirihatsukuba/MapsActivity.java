@@ -19,6 +19,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -55,7 +57,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean isBusRouteShown = false;
     public Activity mActivity = this;
     private CustomPopWindow mCustomWindow;
+    private PopupWindow mPopupWindowBus;
     private PopupWindow mPopupWindow;
+    private FloatingActionButton fab;
     private boolean firstEnter = true;
     private boolean mapReady = false;
 
@@ -75,29 +79,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView = findViewById(R.id.map);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        setPopupWindowBus();
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 //                mPopupWindow.showAsDropDown(view, 0, -400);
 //                mMap.clear();
-                if(busRouteLayer !=null){
-                    try {
-                        if(isBusRouteShown){
-                            busRouteLayer.removeLayerFromMap();
-                            isBusRouteShown = false;
-                        }else {
-                            busRouteLayer.addLayerToMap();
-                            isBusRouteShown = true;
-                        }
-                    }catch (XmlPullParserException e){
-                        e.printStackTrace();
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
+
+                if(mPopupWindowBus.isShowing()){
+
+                }else{
+                    mPopupWindowBus.showAtLocation(fab, Gravity.START,800,650);
                 }
+//                ShowMemo();
             }
         });
 
@@ -117,9 +113,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        mCustomWindow.saveMemoData();
+    }
 
     public int getspotId(){
-        return 5;
+        return 2;
     }
     private void needShowIntroduce(){
         if(dataManager.getBoolean("show_intro", true)){
@@ -158,6 +165,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private void ShowMemo(){
+        mCustomWindow = new CustomPopWindow(mActivity, new View.OnClickListener(){
+            public void onClick(View v){
+                mCustomWindow.dismiss();
+                mCustomWindow.backgroundAlpha(mActivity, 1f);
+                mCustomWindow.saveMemoData();
+            }
+        }, "memo", dataManager);
+        mCustomWindow.showAtLocation(findViewById(R.id.map), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0,0);
+    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus)
     {
@@ -289,10 +306,62 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
         mPopupWindow.setAnimationStyle(R.style.anim_menu_bottombar);
-
-
     }
 
+    private void setPopupWindowBus(){
+        final String guide_addr = "http://kantetsu.co.jp/bus/guide1.html";
+        final String time_addr = "http://kantetsu.jorudan.biz/?p=d&sc=41616&pn=6&v=&b1=%E3%81%A4%E3%81%8F%E3%81%B0%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC&m=b";
+
+        View popupView = getLayoutInflater().inflate(R.layout.popupwindow_bus, null);
+        TextView time = (TextView) popupView.findViewById(R.id.bus_time);
+        TextView route = (TextView) popupView.findViewById(R.id.bus_route);
+        TextView howto = (TextView) popupView.findViewById(R.id.bus_howto);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse(time_addr);
+                Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                mActivity.startActivity(it);
+            }
+        });
+
+        howto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse(guide_addr);
+                Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                mActivity.startActivity(it);
+            }
+        });
+
+        route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(busRouteLayer !=null){
+                    try {
+                        if(isBusRouteShown){
+                            busRouteLayer.removeLayerFromMap();
+                            isBusRouteShown = false;
+                        }else {
+                            busRouteLayer.addLayerToMap();
+                            isBusRouteShown = true;
+                        }
+                    }catch (XmlPullParserException e){
+                        e.printStackTrace();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        mPopupWindowBus = new PopupWindow(popupView, 300, LayoutParams.WRAP_CONTENT, true);
+        mPopupWindowBus.setTouchable(true);
+        mPopupWindowBus.setOutsideTouchable(true);
+        mPopupWindowBus.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
+        mPopupWindowBus.setAnimationStyle(R.style.anim_menu_bus);
+
+    }
 
     //default settings
 
