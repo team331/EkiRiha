@@ -118,6 +118,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onStart(){
         super.onStart();
+
+    }
+
+    private void showSetting(){
         mSpotSelectDialog = new SpotSelectDialog();
         mSpotSelectDialog.setCancelable(false);
         //todo
@@ -132,7 +136,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
         mSpotSelectDialog.show(getFragmentManager(),"dialog");
     }
-
     @Override
     protected void onPause(){
         super.onPause();
@@ -195,7 +198,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onWindowFocusChanged(hasFocus);
         if(firstEnter) {
             firstEnter = false;
-            needShowIntroduce();
+            showSetting();
         }
 
     }

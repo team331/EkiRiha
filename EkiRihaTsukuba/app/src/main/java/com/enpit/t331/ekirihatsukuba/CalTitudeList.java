@@ -173,6 +173,7 @@ public class CalTitudeList {
                 pre = short_line.get(i);
             }
         }
+        list.add(0, spot_name+"_m_0_0");
         return list;
     }
 
