@@ -374,4 +374,33 @@
     <item>36.094807, 140.102632</item> <!-- 4B,4C -->
   </string-array>
 
+    <!-- コンビニ情報 -->
+    <string-array name="store">
+      <item>ミニストップつくば天久保店</item>
+      <item>セブンイレブンつくば天久保三丁目店</item>
+      <item>ローソンつくば天久保三丁目店</item>
+      <item>セブンイレブンつくば天久保４丁目店</item>
+    </string-array>
+
+    <string-array name="store_code">
+      <item>mini_amakubo</item>
+      <item>seven_amakubo3</item>
+      <item>lawson_amakubo3</item>
+      <item>seven_amakubo4</item>
+    </string-array>
+    
+    <string-array name="store_select_map">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+    </string-array>
+    
+    <string-array name="store_points">
+      <item>36.105593, 140.098855</item>
+      <item>36.106586, 140.104960</item>
+      <item>36.105198, 140.106854</item>
+      <item>36.105146, 140.109475</item>
+    </string-array>
+
 </resources>
