@@ -27,6 +27,9 @@ public class CalTitudeList {
 
     private ArrayList<Integer> visited = new ArrayList<>();
     private ArrayList<Integer> poor = new ArrayList<>();
+    private ArrayList<Integer> short_line = new ArrayList<>();
+    private PolylineOptions po;
+    private int now;
 
 
     CalTitudeList(Context context, int spotID) {
@@ -58,11 +61,13 @@ public class CalTitudeList {
         int identify = context.getResources().getIdentifier(spot_select_map, "array", context.getPackageName());
         String[] electable_spot_ids_string = context.getResources().getStringArray(identify);
 
-        String spot_select_tag = spot_name + "_select_tag";
-        String[] electable_spot_tag_str = context.getResources().getStringArray(context.getResources().getIdentifier(spot_select_tag, "array", context.getPackageName()));
+
+        String[] electable_spot_tag_str = context.getResources().getStringArray(context.getResources().getIdentifier(spot_name+"_select_tag", "array", context.getPackageName()));
+        String[] electable_spot_floor_num = context.getResources().getStringArray(context.getResources().getIdentifier(spot_name+"_select_floor", "array", context.getPackageName()));
         for(int i=0;i<electable_spot_ids_string.length;i++){
             points.get(Integer.parseInt(electable_spot_ids_string[i])).setIsBuild();
             points.get(Integer.parseInt(electable_spot_ids_string[i])).tag = electable_spot_tag_str[i];
+            points.get(Integer.parseInt(electable_spot_ids_string[i])).setFloorNumber(Integer.parseInt(electable_spot_floor_num[i]));
         }
         points.get(0).setIsStation();
 
@@ -100,31 +105,46 @@ public class CalTitudeList {
 
     public ArrayList<PolylineOptions> getAllLines(){
         ArrayList<PolylineOptions> plos = new ArrayList<>();
-        PolylineOptions po = new PolylineOptions();
+        po = new PolylineOptions();
         po.width(5).color(Color.RED);
-        int now = 0;
+        now = 0;
+        poor.clear();
+        visited.clear();
         while(visited.size() < points.size()) {
-            po.add(points.get(now).latlng);
-            if(!visited.contains(now))
-                visited.add(now);
-            ArrayList<Integer> unVisitedNeighbor = points.get(now).getUnVisitedNeighbor(visited);
-            if(unVisitedNeighbor.size() > 0){
-                if(unVisitedNeighbor.size() > 1){
-                        poor.add(now);
-                }
-                now = unVisitedNeighbor.get(0);
-            }else{
-                plos.add(po);
-                if(poor.size()>0) {
+            plos = searchLoop(plos);
+        }
+        return plos;
+    }
+
+    private ArrayList<PolylineOptions> searchLoop(ArrayList<PolylineOptions> plos){
+        boolean flag = true;
+        if(plos==null) flag = false;
+        if(flag) po.add(points.get(now).latlng);
+        if(!visited.contains(now))
+            visited.add(now);
+        if(!flag) short_line.add(now);
+        ArrayList<Integer> unVisitedNeighbor = points.get(now).getUnVisitedNeighbor(visited);
+        if(unVisitedNeighbor.size() > 0){
+            if(unVisitedNeighbor.size() > 1){
+                poor.add(now);
+            }
+            now = unVisitedNeighbor.get(0);
+        }else{
+            if(flag) plos.add(po);
+            if(poor.size()>0) {
+                if(flag) {
                     po = new PolylineOptions();
                     po.width(5).color(Color.RED);
-                    now = poor.remove(0);
+                }
+                now = poor.remove(0);
+                if(!flag) {
+                    int index = short_line.indexOf(now);
+                    short_line.subList(index, short_line.size()).clear();
                 }
             }
         }
         return plos;
     }
-
     public LatLngPlus searchByTag(String tag){
         for(LatLngPlus item: points){
             if(tag.equals(item.tag)){
@@ -133,14 +153,28 @@ public class CalTitudeList {
         }
         return null;
     }
-//    public ArrayList<String> getMovieList(){
-//        //must be used after convertRoute
-//        ArrayList<String> list = new ArrayList<>();
-//        for(int i=0;i<route.size()-1;i++){
-//            String tmp = spot_name + "_m_" + route.get(i) + "_" + route.get(i+1);
-//            list.add(tmp);
-//        }
-//        return list;
-//    }
+
+    public ArrayList<String> getMovieList(String tag){
+        //must be used after convertRoute
+        ArrayList<String> list = new ArrayList<>();
+        now = 0;
+        poor.clear();
+        visited.clear();
+        short_line.clear();
+        while(points.get(now).tag != tag){
+            searchLoop(null);
+        }
+        short_line.add(now);
+        int pre = 0;
+        for(int i=0;i<short_line.size(); i++){
+            if(points.get(short_line.get(i)).isBranchOrBuild()) {
+                String tmp = spot_name + "_m_" + pre + "_" + short_line.get(i);
+                list.add(tmp);
+                pre = short_line.get(i);
+            }
+        }
+        list.add(0, spot_name+"_m_0_0");
+        return list;
+    }
 
 }

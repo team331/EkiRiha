@@ -11,4 +11,11 @@
     <string name="introduce">このアプリはXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nDialogを使う方が良いかも</string>
     <string name="dont_show_again">Dont show again</string>
     <string name="next">次へ</string>
+    <string name="movie_from_bus">駅からの動画-></string>
+
+    <string name="bus_time"><u>バス時刻表</u></string>
+    <string name="bus_howto"><u>バス乗り方</u></string>
+
+    <string name="b_play">再生</string>
+    <string name="b_pause">一時停止</string>
 </resources>

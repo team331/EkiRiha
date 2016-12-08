@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:id="@+id/spot_select_dialog_layout">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="137dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="学群："
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:id="@+id/textView6"
+                android:textAlignment="textEnd"
+                android:gravity="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="学類："
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:id="@+id/textView10"
+                android:textAlignment="textEnd"
+                android:gravity="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="試験会場："
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:id="@+id/textView12"
+                android:textAlignment="textEnd"
+                android:gravity="center"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:id="@+id/school_group_spinner"
+                android:entries="@array/school_group" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:id="@+id/scholarship_spinner"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:id="@+id/textView13"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
