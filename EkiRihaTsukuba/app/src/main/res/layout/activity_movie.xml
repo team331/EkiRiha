@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <VideoView
-        android:id="@+id/v"
+        android:id="@+id/vd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -19,18 +19,18 @@
         android:id="@+id/skb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/v" />
+        android:layout_below="@+id/vd" />
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tvcpm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/skb" />
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/bpp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv2" />
+        android:layout_below="@+id/tvcpm"
+        android:text="@string/b_pause" />
 </RelativeLayout>
-

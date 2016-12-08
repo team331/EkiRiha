@@ -15,4 +15,7 @@
 
     <string name="bus_time"><u>バス時刻表</u></string>
     <string name="bus_howto"><u>バス乗り方</u></string>
+
+    <string name="b_play">再生</string>
+    <string name="b_pause">一時停止</string>
 </resources>
