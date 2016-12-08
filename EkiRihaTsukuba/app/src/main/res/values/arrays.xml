@@ -268,7 +268,7 @@
 	<string-array name="forth_select_tag">
 		<item>7A</item>
 	</string-array>
-	<string-array name="forth_floor">
+	<string-array name="forth_select_floor">
 		<item>2</item>
 	</string-array>
 	<string-array name="forth_links">
@@ -309,8 +309,7 @@
 		<item>4B</item>
 		<item>4C</item>
 	</string-array>
-
-	<string-array name="med_floor">
+	<string-array name="med_select_floor">
 		<item>4</item>
 		<item>3</item>
 		<item>3</item>
@@ -321,10 +320,7 @@
 		<item>2,3</item>
 		<item>3,4</item>
 		<item>4,5</item>
-		<item>4,3</item>
-		<item>3,2</item>
-		<item>2,1</item>
-		<item>1,6</item>
+		<item>4,6</item>
 		<item>6,7</item>
 		<item>7,8</item>
 		<item>8,9</item>
@@ -353,25 +349,18 @@
 	  <item>セブンイレブンつくば天久保三丁目店</item>
 	  <item>ローソンつくば天久保三丁目店</item>
 	  <item>セブンイレブンつくば天久保４丁目店</item>
-	</string-array>
-
-	<string-array name="store_code">
-	  <item>mini_amakubo</item>
-	  <item>seven_amakubo3</item>
-	  <item>lawson_amakubo3</item>
-	  <item>seven_amakubo4</item>
-	</string-array>
-	<string-array name="store_select_map">
-	  <item>0</item>
-	  <item>1</item>
-	  <item>2</item>
-	  <item>3</item>
+	  <item>丸善筑波大学店</item>
+	  <item>丸善大学会館店</item>
+	  <item>ファミリーマートつくば春日四丁目店</item>
 	</string-array>
 	<string-array name="store_points">
 	  <item>36.105593, 140.098855</item>
 	  <item>36.106586, 140.104960</item>
 	  <item>36.105198, 140.106854</item>
 	  <item>36.105146, 140.109475</item>
+	  <item>36.110880, 140.100870</item>
+	  <item>36.105832, 140.102543</item>
+	  <item>36.105832, 140.102543</item>
 	</string-array>
 
 </resources>

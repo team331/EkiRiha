@@ -10,6 +10,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
     private Context m_context = this;
     private static final int MIN_SHOW_TIME = 800;//ms
+    public static final boolean DEBUG = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

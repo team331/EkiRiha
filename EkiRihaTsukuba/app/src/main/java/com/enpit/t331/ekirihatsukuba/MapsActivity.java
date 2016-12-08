@@ -51,7 +51,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private KmlLayer busRouteLayer = null;
@@ -61,7 +61,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private PopupWindow mPopupWindowBus;
     private PopupWindow mPopupWindow;
     private SpotSelectDialog mSpotSelectDialog;
-    private FloatingActionButton fab;
+    private FloatingActionButton fab, fab_store;
     private boolean firstEnter = true;
     private boolean mapReady = false;
 
@@ -69,6 +69,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private View mapView;
     private CalTitudeList ctl;
     private DataManager dataManager;
+    private boolean isStoreShown = false;
+    private ArrayList<Marker> store_markers = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,36 +81,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         mapView = findViewById(R.id.map);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         setPopupWindowBus();
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-//                mPopupWindow.showAsDropDown(view, 0, -400);
-//                mMap.clear();
-
                 if(mPopupWindowBus.isShowing()){
-
                 }else{
                     mPopupWindowBus.showAtLocation(fab, Gravity.START,800,650);
                 }
-//                ShowMemo();
             }
         });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        ctl = new CalTitudeList(mActivity, getspotId());
+        fab_store = (FloatingActionButton) findViewById(R.id.fab_store);
+        fab_store.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                toggleStores();
+            }
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -118,19 +108,38 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onStart(){
         super.onStart();
+        if(firstEnter) {
+            firstEnter = false;
+            showSetting();
+        }
 
     }
 
     private void showSetting(){
+        if(dataManager.getInteger("setting") != -1)
+            return;
+
         mSpotSelectDialog = new SpotSelectDialog();
         mSpotSelectDialog.setCancelable(false);
-        //todo
         mSpotSelectDialog.setPositiveButton(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+//                dataManager.setInteger("setting", mSpotSelectDialog.getSpotId());
                 ctl = new CalTitudeList(mActivity, mSpotSelectDialog.getSpotId());
                 startLatLng = AddMarkers();
                 AddRouteLines();
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        String tag = marker.getTitle();
+                        LatLngPlus target = ctl.searchByTag(tag);
+                        if(target!= null) {
+                            setPopupWindow(target);
+                            mPopupWindow.showAtLocation(mapView, Gravity.BOTTOM,0,0);
+                        }
+                        return false;
+                    }
+                });
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLatLng, 18));
             }
         });
@@ -143,43 +152,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public int getspotId(){
-        return 2;
-    }
-    private void needShowIntroduce(){
-        if(dataManager.getBoolean("show_intro", false)){
-            mCustomWindow = new CustomPopWindow(mActivity, new View.OnClickListener() {
-                public void onClick(View v) {
-                    mCustomWindow.dismiss();
-                    mCustomWindow.backgroundAlpha(mActivity, 1f);
-                    mCustomWindow.checkBoxOperate(dataManager, "show_intro");
-                    needShowSetting();
-                }
-            }, "introduce");
-            mCustomWindow.showAtLocation(findViewById(R.id.map), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-        }else{
-            needShowSetting();
-        }
-    }
-
-    private void needShowSetting() {
-        if(dataManager.getBoolean("show_setting", false)){
-            mCustomWindow = new CustomPopWindow(mActivity, new View.OnClickListener() {
-                public void onClick(View v) {
-                    mCustomWindow.dismiss();
-                    mCustomWindow.backgroundAlpha(mActivity, 1f);
-                    //todo:
-                    // spinning setting
-//                    mCustomWindow.checkBoxOperate(dataManager, "show_setting");
-                    if(mapReady) {
-                        ctl = new CalTitudeList(mActivity, getspotId());
-                        startLatLng = AddMarkers();
-                        AddRouteLines();
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLatLng, 18));
-                    }
-                }
-            }, "setting");
-            mCustomWindow.showAtLocation(findViewById(R.id.map), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-        }
+        return dataManager.getInteger("setting");
     }
 
     private void ShowMemo(){
@@ -196,11 +169,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onWindowFocusChanged(boolean hasFocus)
     {
         super.onWindowFocusChanged(hasFocus);
-        if(firstEnter) {
-            firstEnter = false;
-            showSetting();
-        }
-
     }
 
     @Override
@@ -209,35 +177,63 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapReady = true;
         homeLatLng = new LatLng(36.108705, 140.103983);
 
-        if(!dataManager.getBoolean("show_setting", true)){
+
+        if(getspotId() != -1){
             ctl = new CalTitudeList(mActivity, getspotId());
             startLatLng = AddMarkers();
             AddRouteLines();
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    String tag = marker.getTitle();
+                    LatLngPlus target = ctl.searchByTag(tag);
+                    if(target!= null) {
+                        setPopupWindow(target);
+                        mPopupWindow.showAtLocation(mapView, Gravity.BOTTOM,0,0);
+                    }
+                    return false;
+                }
+            });
         }else{
             startLatLng = homeLatLng;
         }
+
+        addStores();
+
         mMap.addMarker(new MarkerOptions().position(homeLatLng).title("筑波大学").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                String tag = marker.getTitle();
-                LatLngPlus target = ctl.searchByTag(tag);
-                if(target!= null) {
-                    setPopupWindow(target);
-                    mPopupWindow.showAtLocation(mapView, Gravity.BOTTOM,0,0);
-                }
-                return false;
-            }
-        });
+
         mMap.setIndoorEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLatLng, 18));
+        addBus();
 
+    }
+
+    private void addBus(){
         try {
             busRouteLayer = new KmlLayer(mMap, R.raw.bus, getApplicationContext());
         }catch (IOException e){
             e.printStackTrace();
         }catch (XmlPullParserException e){
             e.printStackTrace();
+        }
+    }
+    private void addStores(){
+        String[] store_name = this.getResources().getStringArray(R.array.store);
+        String[] store_points = this.getResources().getStringArray(R.array.store_points);
+        for(int i=0; i< store_points.length; i++){
+            String[] points = store_points[i].split(",");
+            LatLng ll = new LatLng(Double.parseDouble(points[0]), Double.parseDouble(points[1]));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(ll).title(store_name[i])
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            marker.setVisible(isStoreShown);
+            store_markers.add(marker);
+        }
+    }
+
+    private void toggleStores(){
+        isStoreShown = !isStoreShown;
+        for(Marker m: store_markers){
+            m.setVisible(isStoreShown);
         }
     }
 
@@ -392,55 +388,4 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.map, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
 }

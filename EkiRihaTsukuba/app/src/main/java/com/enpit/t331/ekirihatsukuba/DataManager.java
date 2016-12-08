@@ -22,6 +22,14 @@ public class DataManager {
         editor.commit();
     }
 
+    public void setInteger(String name , int value){
+        editor.putInt(name, value);
+        editor.commit();
+    }
+
+    public int getInteger(String name){
+        return sharedPreferences.getInt(name, -1);
+    }
     public String getString(String name){
         return sharedPreferences.getString(name, "");
     }

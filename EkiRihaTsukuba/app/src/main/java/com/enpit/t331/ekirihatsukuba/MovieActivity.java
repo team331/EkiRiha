@@ -36,6 +36,7 @@ public class MovieActivity extends AppCompatActivity {
         ArrayList<String> list = it.getStringArrayListExtra("movie_list");
         movies = new ArrayList<>();
         for(String item : list){
+            if(MainActivity.DEBUG) System.out.println("Movie: " + item);
             movies.add(this.getResources().getIdentifier(item, "raw", this.getPackageName()));
         }
         final int vLen = movies.size(); //動画の要素数

@@ -49,6 +49,7 @@ public class CalTitudeList {
     private void CreateGraph(){
         spot_name = context.getResources().getStringArray(R.array.spot_code)[spot_id];
 
+        if(MainActivity.DEBUG) System.out.println("SPOT_NAME: " + spot_name);
         String spot_points_str = spot_name + "_points";
         String[] spot_points_latlng_str = context.getResources().getStringArray(context.getResources().getIdentifier(spot_points_str, "array", context.getPackageName()));
         for(int i=0; i<spot_points_latlng_str.length; i++){

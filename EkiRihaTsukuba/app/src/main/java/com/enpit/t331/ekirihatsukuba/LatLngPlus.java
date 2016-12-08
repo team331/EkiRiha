@@ -15,6 +15,9 @@ public class LatLngPlus {
     private boolean station = false;
     private boolean build = false;
 
+    public LatLngPlus(double x, double y){
+        latlng = new LatLng(x,y);
+    }
     public LatLngPlus(double x, double y, int number){
         latlng = new LatLng(x,y);
 //        this.local_number = number;
