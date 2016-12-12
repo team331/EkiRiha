@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -15,25 +16,24 @@ import android.net.Uri;
 import android.media.MediaPlayer;
 import java.util.ArrayList;
 
-public class MovieActivity extends AppCompatActivity implements Runnable {
+public class MovieActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, View.OnClickListener, SeekBar.OnSeekBarChangeListener, Runnable {
 
     private Context context = this;
-    private int i = 0;
-    private int j = 0;
-    private int totalTime = 0;
-    private int crPosition = 0;
+    private int vnum = 0; //動画番号
+    private int totalTime = 0; //総動画時間
+    private int crPosition = 0; //現在時間位置
     private ArrayList<Integer> movies;
-    private int nowTime = 0;
-    private boolean flag = true;
+    private int nowTime = 0; //現在時間
+    private boolean flag = true; //スレッド時間差回避用フラグ
+    private boolean thFlag = true; //スレッド停止用フラグ
+    private int vLen; //動画の要素数
+    private int[] lapTime; //シークバーで使用するラップタイム
 
     private VideoView vd;
     private TextView tvcpm;
     private SeekBar skb;
     private Button bpp;
     private Thread crThread;
-
-    private int vLen;
-    private int[] lapTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class MovieActivity extends AppCompatActivity implements Runnable {
         tvcpm = (TextView) findViewById(R.id.tvcpm);
         skb = (SeekBar) findViewById(R.id.skb);
         bpp = (Button) findViewById(R.id.bpp);
+
+        thFlag = true;
 
         Intent it = getIntent();
         ArrayList<String> list = it.getStringArrayListExtra("movie_list");
@@ -70,106 +72,117 @@ public class MovieActivity extends AppCompatActivity implements Runnable {
         crThread = new Thread(this);
         crThread.start();
 
-        bpp.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v){
-                        switch(v.getId()){
-                            case R.id.bpp:
-                                if(vd.isPlaying()){
-                                    vd.pause();
-                                    bpp.setText(R.string.b_play);
-                                } else {
-                                    vd.start();
-                                    bpp.setText(R.string.b_pause);
-                                }
-                        }
-                    }
-                }
-        );
+        //ボタン
+        bpp.setOnClickListener(this);
 
         //動画指定
         vd.setVideoURI(Uri.parse("android.resource://" + this.getPackageName() + "/" + movies.get(0)));
         vd.start();
 
         //シークバー
-        skb.setOnSeekBarChangeListener(
-                new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        //現在時間の出力
-                        tvcpm.setText(String.valueOf(progress/1000) + " / " + String.valueOf(totalTime/1000) + "[sec]");
+        skb.setOnSeekBarChangeListener(this);
 
-                        for(int k = 0; k < vLen-1; k++)
-                            if (progress > lapTime[k] && progress <= lapTime[k + 1]) {
-                                //k番目の動画指定
-                                vd.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + movies.get(k)));
-                                vd.seekTo(progress - lapTime[k]);
-                                i = k;
-                            }
-                        vd.start();
-                        bpp.setText(R.string.b_pause);
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    }
-                }
-        );
-
-        vd.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                flag = false;
-
-                if(++i == movies.size()) {
-                    //強制終了を回避するために動画の先頭へ
-                    i=0;
-                    flag = true;
-                    vd.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + movies.get(0)));
-                    vd.seekTo(0);
-                    skb.setProgress(0);
-                    bpp.setText(R.string.b_play);
-                    vd.pause();
-                    return;
-                } else {
-                    vd.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + movies.get(i)));
-                    vd.start();
-                }
-            }
-        });
+        //動画終了時
+        vd.setOnCompletionListener(this);
     }
 
     @Override
-    synchronized public void run(){
-        try{
-            while(vd != null) {
+    public void onCompletion(MediaPlayer mp) {
+        flag = false;
+
+        if (++vnum == movies.size()) {
+            //強制終了を回避するために動画の先頭へ
+            vnum = 0;
+            flag = true;
+            vd.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + movies.get(vnum)));
+            vd.seekTo(vnum);
+            skb.setProgress(vnum);
+            bpp.setText(R.string.b_play);
+            vd.pause();
+            return;
+        } else {
+            vd.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + movies.get(vnum)));
+            vd.start();
+        }
+    }
+
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.bpp:
+                if(vd.isPlaying()){
+                    vd.pause();
+                    bpp.setText(R.string.b_play);
+                } else {
+                    vd.start();
+                    bpp.setText(R.string.b_pause);
+                }
+        }
+    }
+
+    @Override
+    public void run(){
+        while(vd != null && thFlag) {
+            try {
                 crPosition = vd.getCurrentPosition();
                 Message msg = new Message();
                 msg.what = crPosition;
                 tHandler.sendMessage(msg);
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
     private Handler tHandler = new Handler() {
       public void handleMessage(Message msg) {
+          //時間差回避
           if(flag == true)
-              nowTime = msg.what + lapTime[i];
+              nowTime = lapTime[vnum];
           else
-              nowTime = msg.what + lapTime[i-1];
+              nowTime = lapTime[vnum-1];
+          if(msg.what >= 0)
+              nowTime += msg.what;
           if(msg.what == 0)
               flag = true;
-          tvcpm.setText(nowTime/1000 + " / " + totalTime/1000 + "[sec]");
+
+          skb.setSecondaryProgress(nowTime);
+          tvcpm.setText(String.valueOf(nowTime/1000) + " / " + String.valueOf(totalTime/1000) + "[sec]");
       }
     };
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        for(int k = 0; k < vLen; k++)
+            if (progress > lapTime[k] && progress <= lapTime[k + 1]) {
+                //k番目の動画指定
+                vd.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + movies.get(k)));
+                vd.seekTo(progress - lapTime[k]);
+                vnum = k;
+            }
+        vd.start();
+        bpp.setText(R.string.b_pause);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        //Backキーの処理
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            thFlag = false;
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -13,24 +13,28 @@
     <VideoView
         android:id="@+id/vd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
     <SeekBar
         android:id="@+id/skb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/vd" />
+        android:layout_below="@+id/vd"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal" />
 
     <TextView
         android:id="@+id/tvcpm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/skb" />
+        android:layout_below="@+id/skb"
+        style="?android:attr/textAppearanceLarge"/>
 
     <Button
         android:id="@+id/bpp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvcpm"
-        android:text="@string/b_pause" />
+        android:text="@string/b_pause"
+        style="?android:attr/textAppearanceLarge"/>
 </RelativeLayout>
