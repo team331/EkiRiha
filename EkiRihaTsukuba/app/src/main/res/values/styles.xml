@@ -22,4 +22,9 @@
         <item name="android:windowExitAnimation">@anim/menu_bottombar_out</item>
     </style>
 
+    <style name="anim_menu_bus">
+        <item name="android:windowEnterAnimation">@anim/menu_expand_out</item>
+        <item name="android:windowExitAnimation">@anim/menu_expand_in</item>
+    </style>
+
 </resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">mkThread</string>
+    <string name="b_play">Play</string>
+    <string name="b_pause">Pause</string>
+</resources>

@@ -1,57 +1,376 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="spot">
-        <item>第一試験場</item>
-        <item>第二試験場</item>
-        <item>第三試験場</item>
-        <item>春日試験場</item>
-        <item>医学試験場</item>
-        <item>体育、芸術試験場</item>
-    </string-array>
+	<string-array name="spot">
+		<item>第一試験場</item>
+		<item>第二試験場</item>
+		<item>第三試験場</item>
+		<item>春日試験場</item>
+		<item>医学試験場</item>
+		<item>体育、芸術試験場</item>
+	</string-array>
 
-    <string-array name="spot_code">
-        <item>first</item>
-        <item>second</item>
-        <item>third</item>
-        <item>forth</item>
-        <item>med</item>
-        <item>sp_art</item>
-    </string-array>
+	<string-array name="spot_code">
+		<item>first</item>
+		<item>second</item>
+		<item>third</item>
+		<item>forth</item>
+		<item>med</item>
+		<item>sp_art</item>
+	</string-array>
 
-    <string-array name="third_select_map">
-        <item>6</item>
-        <item>4</item>
-        <item>8</item>
-        <item>7</item>
-    </string-array>
 
-    <string-array name="third_select_tag">
-        <item>3A</item>
-        <item>3B</item>
-        <item>3K</item>
-        <item>3L</item>
-    </string-array>
+	<string-array name="school_group">
+		<item>人文・文化学群</item>
+		<item>社会・国際学群</item>
+		<item>人間学群</item>
+		<item>生命環境学群</item>
+		<item>理工学群</item>
+		<item>情報学群</item>
+		<item>医学群</item>
+		<item>体育専門学群</item>
+		<item>芸術専門学群</item>
+	</string-array>
+	<string-array name="scholarship_0">
+		<item>人文学類</item>
+		<item>比較文化学類</item>
+		<item>日本語・日本文化学類</item>
+	</string-array>
+	<string-array name="scholarship_1">
+		<item>社会学類</item>
+		<item>国際総合学類</item>
+	</string-array>
+	<string-array name="scholarship_2">
+		<item>教育学類</item>
+		<item>心理学類</item>
+		<item>障害科学類</item>
+	</string-array>
+	<string-array name="scholarship_3">
+		<item>生物学類</item>
+		<item>生物資源学類</item>
+		<item>地球学類</item>
+	</string-array>
+	<string-array name="scholarship_4">
+		<item>数学類</item>
+		<item>物理学類</item>
+		<item>科学類</item>
+		<item>応用理工学類</item>
+		<item>高額システム学類</item>
+		<item>社会工学類</item>
+	</string-array>
+	<string-array name="scholarship_5">
+		<item>情報科学類</item>
+		<item>情報メディア創成学類</item>
+		<item>知識情報・図書館学類</item>
+	</string-array>
+	<string-array name="scholarship_6">
+		<item>医学類</item>
+		<item>看護学類</item>
+		<item>医療科学類</item>
+	</string-array>
+	<string-array name="scholarship_7">
+		<item>学類なし</item>
+	</string-array>
+	<string-array name="scholarship_8">
+		<item>学類なし</item>
+	</string-array>
 
-    <string-array name="third_links">
-        <item>0,1</item>
+
+	<string-array name="first_select_map">
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>14</item>
+		<item>17</item>
+	</string-array>
+	<string-array name="first_select_tag">
+		<item>1B</item>
+		<item>1C</item>
+		<item>1D</item>
+		<item>1E</item>
+		<item>1H</item>
+	</string-array>
+	<string-array name="first_select_floor">
+		<item>3</item>
+		<item>5</item>
+		<item>3</item>
+		<item>5</item>
+		<item>2</item>
+	</string-array>
+	<string-array name="first_links">
+		<item>0,1</item>
+		<item>1,2</item>
+		<item>2,3</item>
+		<item>3,4</item>
+		<item>4,5</item>
+		<item>5,6</item>
+		<item>6,7</item>
+		<item>7,8</item>
+		<item>8,9</item>
+		<item>9,11</item>
+		<item>11,10</item>
+		<item>9,12</item>
+		<item>9,13</item>
+		<item>13,14</item>
+		<item>9,15</item>
+		<item>15,16</item>
+		<item>16,17</item>
+	</string-array>
+	<string-array name="first_points">
+		<item>36.107902, 140.099815</item>
+		<item>36.108142, 140.099735</item>
+		<item>36.108410, 140.100430</item>
+		<item>36.108317, 140.101132</item>
+		<item>36.108693, 140.101975</item>
+		<item>36.108642, 140.101997</item>
+		<item>36.108619, 140.101948</item>
+		<item>36.108640, 140.101939</item>
+		<item>36.108672, 140.102024</item>
+		<item>36.108376, 140.102191</item>
+		<item>36.108694, 140.102747</item>
+		<item>36.108486, 140.102318</item>
+		<item>36.108367, 140.102045</item>
+		<item>36.108227, 140.101763</item>
+		<item>36.108252, 140.101710</item>
+		<item>36.108425, 140.102256</item>
+		<item>36.108266, 140.102375</item>
+		<item>36.108526, 140.102995</item>
+	</string-array>
+
+
+	<string-array name="second_select_map">
+		<item>7</item>
+		<item>7</item>
+		<item>8</item>
+		<item>8</item>
+		<item>12</item>
+		<item>4</item>
+	</string-array>
+	<string-array name="second_select_floor">
+		<item>4</item>
+		<item>5</item>
+		<item>4</item>
+		<item>4</item>
+		<item>4</item>
+		<item>2</item>
+	</string-array>
+	<string-array name="second_select_tag">
+		<item>2A</item>
+		<item>2B</item>
+		<item>2C</item>
+		<item>2D</item>
+		<item>2G</item>
+		<item>2H</item>
+	</string-array>
+	<string-array name="second_links">
+		<item>0,1</item>
+		<item>1,2</item>
+		<item>2,3</item>
+		<item>2,4</item>
+		<item>2,5</item>
+		<item>5,6</item>
+		<item>6,7</item>
+		<item>3,8</item>
+		<item>8,9</item>
+		<item>9,10</item>
+		<item>10,11</item>
+		<item>11,12</item>
+	</string-array>
+	<string-array name="second_points">
+		<item>36.111291, 140.103518</item>	<!-- 0:中央バス停 -->
+		<item>36.111628, 140.103293</item>	<!-- 1:車道交差点 -->
+		<item>36.111307, 140.102467</item>	<!-- 2:学内交差点 -->
+		<item>36.111675, 140.102244</item>	<!-- 3:掲示板 -->
+		<item>36.111127, 140.101780</item>	<!-- 4:2H入口 -->
+		<item>36.111083, 140.102590</item>	<!-- 5:総合研究棟A前 -->
+		<item>36.110552, 140.101458</item>	<!-- 6:2A,2B前交差点 -->
+		<item>36.110604, 140.101461</item>	<!-- 7:2A,2B入口 -->
+		<item>36.111382, 140.101214</item>	<!-- 8:2C,2D入口 -->
+		<item>36.111217, 140.100871</item>	<!-- 9:2Cと水路の間(建物側) -->
+		<item>36.111193, 140.100736</item>	<!-- 10:2Cと水路の間(水路側) -->
+		<item>36.111980, 140.100241</item>	<!-- 11:2G前道 -->
+		<item>36.112017, 140.100321</item>	<!-- 12:2G入口 -->
+	</string-array>
+
+
+	<string-array name="third_select_map">
+		<item>6</item>
+		<item>4</item>
+		<item>8</item>
+		<item>7</item>
+	</string-array>
+	<string-array name="third_select_tag">
+		<item>3A</item>
+		<item>3B</item>
+		<item>3K</item>
+		<item>3L</item>
+	</string-array>
+	<string-array name="third_select_floor">
+		<item>5</item>
+		<item>4</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+	<string-array name="third_links">
+		<item>0,1</item>
+		<item>1,2</item>
+		<item>2,3</item>
+		<item>3,4</item>
+		<item>4,5</item>
+		<item>5,6</item>
+		<item>3,7</item>
+		<item>7,8</item>
+	</string-array>
+	<string-array name="third_points">
+		<item>36.110213, 140.098655</item>
+		<item>36.109973, 140.098791</item>
+		<item>36.110419, 140.100038</item>
+		<item>36.110512, 140.100035</item>
+		<item>36.110775, 140.100310</item>
+		<item>36.110942, 140.100730</item>
+		<item>36.110698, 140.100824</item>
+		<item>36.111162, 140.099473</item>
+		<item>36.111466, 140.100225</item>
+	</string-array>
+
+
+	<string-array name="sp_art_select_map">
+		<item>3</item>
+		<item>7</item>
+	</string-array>
+	<string-array name="sp_art_select_tag">
+		<item>5C</item>
+		<item>Gym</item>
+	</string-array>
+	<string-array name="sp_art_select_floor">
+		<item>6</item>
+		<item>0</item>
+	</string-array>
+	<string-array name="sp_art_links">
+		<item>0,1</item>
+		<item>1,2</item>
+		<item>2,3</item>
+		<item>0,4</item>
+		<item>4,5</item>
+		<item>5,6</item>
+		<item>6,7</item>
+	</string-array>
+	<string-array name="sp_art_points">
+		<item>36.103417, 140.101527</item>  <!-- 0:西バス停 -->
+        <item>36.103079, 140.101573</item>  <!-- 1:交差点手前 -->
+        <item>36.103187, 140.103005</item>  <!-- 2:5C前 -->
+        <item>36.103187, 140.103005</item>  <!-- 3:5C入口 -->
+        <item>36.103011, 140.101614</item>  <!-- 4:交差点 -->
+        <item>36.103235, 140.103447</item>  <!-- 5:交差点 -->
+		<item>36.103113, 140.103447</item>  <!-- 6:体育館すぐ脇 -->
+        <item>36.103081, 140.103761</item>  <!-- 7:体育館入口 -->
+	</string-array>
+
+
+	<string-array name="forth_select_map">
+		<item>10</item>
+	</string-array>
+	<string-array name="forth_select_tag">
+		<item>7A</item>
+	</string-array>
+	<string-array name="forth_select_floor">
+		<item>2</item>
+	</string-array>
+	<string-array name="forth_links">
+		<item>0,1</item>
+		<item>2,3</item>
+		<item>3,4</item>
+		<item>4,5</item>
+		<item>5,6</item>
+		<item>6,1</item>
+		<item>1,7</item>
+		<item>7,8</item>
+		<item>8,9</item>
+		<item>9,10</item>
+	</string-array>
+	<string-array name="forth_points">
+		<item>36.085902, 140.108149</item> <!-- 大学入口 -->
+		<item>36.086367, 140.106604</item> <!-- 掲示板前 -->
+		<item>36.087771, 140.107225</item> <!-- バス停前 -->
+		<!-- バス停前から掲示板まで -->
+		<item>36.087666, 140.107252</item>
+		<item>36.087302, 140.106470</item>
+		<item>36.086879, 140.106076</item>
+		<item>36.086743, 140.106692</item>
+		<!-- 掲示板から試験会場まで -->
+		<item>36.086730, 140.106623</item>
+		<item>36.086799, 140.106240</item>
+		<item>36.086716, 140.106066</item>
+		<item>36.086655, 140.106099</item> <!-- 7A入口 -->
+	</string-array>
+
+	<string-array name="med_select_map">
+		<item>5</item>
+		<item>14</item>
+		<item>14</item>
+	</string-array>
+	<string-array name="med_select_tag">
+		<item>4A</item>
+		<item>4B</item>
+		<item>4C</item>
+	</string-array>
+	<string-array name="med_select_floor">
+		<item>4</item>
+		<item>3</item>
+		<item>3</item>
+	</string-array>
+	<string-array name="med_links">
+		<item>0,1</item>
         <item>1,2</item>
         <item>2,3</item>
         <item>3,4</item>
         <item>4,5</item>
-        <item>5,6</item>
-        <item>2,7</item>
+        <item>4,6</item>
+        <item>6,7</item>
         <item>7,8</item>
-    </string-array>
+        <item>8,9</item>
+        <item>9,10</item>
+        <item>10,11</item>
+        <item>11,12</item>
+        <item>12,13</item>
+        <item>13,14</item>
+	</string-array>
+	<string-array name="med_points">
+		<item>36.093070, 140.103777</item> <!-- 0:バス停 -->
+        <item>36.093399, 140.103653</item> <!-- 1:上り坂歩道 -->
+        <item>36.093395, 140.103439</item>
+        <item>36.093426, 140.103339</item>
+        <item>36.093363, 140.103196</item> <!-- 掲示板前 -->
+        <item>36.093536, 140.103050</item> <!-- 4A -->
+        <!-- 4B,4Cに向かう順路 -->
+        <item>36.093426, 140.103339</item> <!-- 6: 3と同じ-->
+        <item>36.093395, 140.103439</item> <!-- 7: 2と同じ-->
+        <item>36.093399, 140.103653</item> <!-- 8: 1と同じ -->
+        <item>36.093152, 140.103765</item>
+        <item>36.093159, 140.103809</item>
+        <item>36.094182, 140.103619</item>
+        <item>36.095188, 140.102980</item>
+        <item>36.094962, 140.102570</item>
+        <item>36.094807, 140.102632</item> <!-- 4B,4C -->
+	</string-array>
 
-    <string-array name="third_points">
-        <item>36.110213, 140.098655</item>
-        <item>36.109973, 140.098791</item>
-        <item>36.110419, 140.100038</item>
-        <item>36.110512, 140.100035</item>
-        <item>36.110775, 140.100310</item>
-        <item>36.110942, 140.100730</item>
-        <item>36.110698, 140.100824</item>
-        <item>36.111162, 140.099473</item>
-        <item>36.111466, 140.100225</item>
-    </string-array>
+	<!-- コンビニ情報 -->
+	<string-array name="store">
+	  <item>ミニストップつくば天久保店</item>
+	  <item>セブンイレブンつくば天久保三丁目店</item>
+	  <item>ローソンつくば天久保三丁目店</item>
+	  <item>セブンイレブンつくば天久保４丁目店</item>
+	  <item>丸善筑波大学店</item>
+	  <item>丸善大学会館店</item>
+	  <item>ファミリーマートつくば春日四丁目店</item>
+	</string-array>
+	<string-array name="store_points">
+	  <item>36.105593, 140.098855</item>
+	  <item>36.106586, 140.104960</item>
+	  <item>36.105198, 140.106854</item>
+	  <item>36.105146, 140.109475</item>
+	  <item>36.110880, 140.100870</item>
+	  <item>36.105832, 140.102543</item>
+	  <item>36.105832, 140.102543</item>
+	</string-array>
+
 </resources>
