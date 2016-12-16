@@ -16,4 +16,4 @@
 地図とは違って実感が備わっています  
 
 ## 使い方
-![使い方][https://raw.githubusercontent.com/team331/EkiRiha/feature/add_readme/image/HowToUse.png]
+![使い方][https://github.com/team331/EkiRiha/blob/feature/add_readme/image/HowToUse.png]
